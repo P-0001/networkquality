@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"networkquality/network"
+	"github.com/P-0001/networkquality/network"
 )
 
 func main() {

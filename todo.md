@@ -1,4 +1,5 @@
-- [] Add bin and build scripts
+- [X] Add bin and build scripts
+
 - [] Add color to console output
 
 - [] Add config file

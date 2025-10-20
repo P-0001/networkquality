@@ -17,16 +17,25 @@ A minimal Go CLI for measuring network quality across download, upload, and late
 - Fast
 - Accurate
 
-## Getting Started
+## Installation
+
+### Using `go install` (Recommended)
+```bash
+go install github.com/P-0001/networkquality@latest
+```
+
+This installs the `networkquality` command to your `$GOPATH/bin` directory.
+
+### From Source
 - **Prerequisites**: Go 1.21+
 - **Clone**:
 ```bash
-git clone https://github.com/yourname/networkquality.git
+git clone https://github.com/P-0001/networkquality.git
 cd networkquality
 ```
 - **Build**:
 ```bash
-go build -o networkquality.exe ./cmd
+go build -o networkquality.exe .
 ```
 
 ## Usage
