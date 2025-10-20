@@ -19,8 +19,14 @@ func main() {
 	verbose := flag.Bool("v", false, "Verbose output")
 	quick := flag.Bool("q", false, "Quick test (5 seconds)")
 	help := flag.Bool("h", false, "Show help")
+	version := flag.Bool("version", false, "Show version")
 
 	flag.Parse()
+
+	if *version {
+		fmt.Println("networkquality version", network.Version)
+		return
+	}
 
 	if *help {
 		printHelp()
@@ -62,18 +68,45 @@ func main() {
 		fmt.Println()
 	}
 
-	// Run the test
-	fmt.Println("Running network quality test...")
-	fmt.Println()
+	spinnerStop := make(chan struct{})
+	spinnerDone := make(chan struct{})
+	go func() {
+		defer close(spinnerDone)
+		frames := []rune{'|', '/', '-', '\\'}
+		idx := 0
+		ticker := time.NewTicker(120 * time.Millisecond)
+		defer ticker.Stop()
+
+		fmt.Print("Running network quality test... ")
+		for {
+			select {
+			case <-spinnerStop:
+				fmt.Print("\rRunning network quality test...    \r")
+				return
+			case <-ticker.C:
+				fmt.Printf("\rRunning network quality test... %c", frames[idx%len(frames)])
+				idx++
+			}
+		}
+	}()
 
 	startTime := time.Now()
 	result, err := network.RunQualityTest(ctx, config)
+	close(spinnerStop)
+	<-spinnerDone
+
+	elapsed := time.Since(startTime)
+
+	status := "done"
+	if err != nil {
+		status = "failed"
+	}
+	fmt.Printf("Running network quality test... %s\n\n", status)
+
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
-
-	elapsed := time.Since(startTime)
 
 	// Display results
 	displayResults(result)

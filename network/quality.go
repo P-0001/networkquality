@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+const Version = "0.1.0"
+
 // QualityResult holds the network quality test results
 type QualityResult struct {
 	UplinkCapacity   float64 // Mbps
