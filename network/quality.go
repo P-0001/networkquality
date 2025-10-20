@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-const Version = "1.0.1"
+const Version = "1.0.2"
 
 // QualityResult holds the network quality test results
 type QualityResult struct {
