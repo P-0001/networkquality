@@ -6,6 +6,6 @@
 
 - [] Add tests
 
-- [] Add more metrics
+- [] Add more metrics (jitter, packet loss)
 
 - [] Add more options
