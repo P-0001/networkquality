@@ -26,6 +26,10 @@ go install github.com/P-0001/networkquality@latest
 
 This installs the `networkquality` command to your `$GOPATH/bin` directory.
 
+### Using Releases
+- Download the latest archive from the [releases page](https://github.com/P-0001/networkquality/releases).
+- Place the binary somewhere on your `PATH` (e.g., `/usr/local/bin` or `%USERPROFILE%\bin`).
+
 ### From Source
 - **Prerequisites**: Go 1.21+
 - **Clone**:
